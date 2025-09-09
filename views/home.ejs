@@ -1,11 +1,44 @@
-<%- include("./partials/header") %>
+=<%- include("./partials/header") %>
 
-<div class="text-center my-5">
-  <h1>🚀 Welcome to UrbanX</h1>
-  <p class="lead">Smart Civic Issue Reporting & Management System</p>
-
-  <a href="/reports" class="btn btn-primary btn-lg mt-3">View Reports</a>
-  <a href="/reports/new" class="btn btn-success btn-lg mt-3">Create New Report</a>
+<!-- Hero Section -->
+<div class="hero text-center d-flex flex-column justify-content-center align-items-center py-5" style="background: url('/images/city-bg.jpg') no-repeat center center; background-size: cover; min-height: 80vh; color: white; text-shadow: 1px 1px 5px rgba(0,0,0,0.7);">
+  <h1 class="display-4 fw-bold mb-3 animate__animated animate__fadeInDown" style="color:black ;">🚀 Welcome to UrbanX</h1>
+  <p class="lead mb-4 animate__animated animate__fadeInUp"style="color:black ;"> &nbsp; Smart Civic Issue Reporting & Management System</p>
+  <div class="animate__animated animate__fadeInUp animate__delay-1s">
+    <a href="/reports" class="btn btn-primary btn-lg me-2 shadow-sm">View Reports</a>
+    <a href="/reports/new" class="btn btn-success btn-lg shadow-sm">Create New Report</a>
+  </div>
 </div>
 
+<!-- Feature Highlights -->
+<div class="container my-5">
+  <div class="row text-center">
+    <div class="col-md-4 mb-4">
+      <i class="fas fa-map-marker-alt fa-3x text-primary mb-3"></i>
+      <h5 class="fw-bold">Report Issues Easily</h5>
+      <p>Pin the exact location of civic issues with just a few clicks.</p>
+    </div>
+    <div class="col-md-4 mb-4">
+      <i class="fas fa-users fa-3x text-success mb-3"></i>
+      <h5 class="fw-bold">Community Driven</h5>
+      <p>Engage with other citizens and see real-time updates.</p>
+    </div>
+    <div class="col-md-4 mb-4">
+      <i class="fas fa-tachometer-alt fa-3x text-warning mb-3"></i>
+      <h5 class="fw-bold">Fast Resolution</h5>
+      <p>Issues are tracked and managed by local authorities efficiently.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Call-to-Action Banner -->
+<div class="text-center py-4 bg-primary text-white">
+  <h4 class="mb-3">Found an issue in your city?</h4>
+  <a href="/reports/new" class="btn btn-light btn-lg shadow-sm">Report Now</a>
+</div>
+
+<!-- Footer -->
 <%- include("./partials/footer") %>
+
+<!-- Optional: Animate.css for subtle animations -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>

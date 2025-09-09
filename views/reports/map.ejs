@@ -1,0 +1,32 @@
+<%- include("../partials/header") %>
+
+<h1>Reports Heatmap</h1>
+<div id="heatmap" style="height:500px; width:100%; border:1px solid #ddd; border-radius:6px;"></div>
+
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", async function () {
+  const map = L.map("heatmap").setView([28.6139, 77.2090], 13);
+
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19,
+  }).addTo(map);
+
+  const response = await fetch("/reports/heatmap");
+  const points = await response.json();
+
+  L.heatLayer(points, {
+    radius: 25,
+    blur: 15,
+    maxZoom: 17,
+  }).addTo(map);
+});
+</script>
+
+<%- include("../partials/footer") %>
