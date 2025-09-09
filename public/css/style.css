@@ -1,0 +1,18 @@
+/* public/css/style.css */
+
+/* Simple base styles */
+body {
+  background-color: #f8f9fa;
+}
+
+h1, h2, h3 {
+  font-family: Arial, sans-serif;
+}
+
+/* Map fix */
+#map {
+  height: 420px;  /* must have height */
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
