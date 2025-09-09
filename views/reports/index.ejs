@@ -1,0 +1,14 @@
+<%- include("../partials/header") %>
+<h1>All Reports</h1>
+
+<ul>
+  <% reports.forEach(r => { %>
+    <li>
+      <strong><%= r.title %></strong> - <%= r.status %> <br>
+      (<%= r.location.coordinates[1] %>, <%= r.location.coordinates[0] %>)
+    </li>
+  <% }) %>
+</ul>
+
+<a href="/reports/new" class="btn btn-success">New Report</a>
+<%- include("../partials/footer") %>
