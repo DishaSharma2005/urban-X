@@ -1,17 +1,14 @@
-// models/User.js
 const mongoose = require("mongoose");
 const passportLocalMongoose = require("passport-local-mongoose");
 
 const UserSchema = new mongoose.Schema({
-  email: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  // username and password will be added automatically by the plugin
+  username: { type: String, required: true, unique: true }, // keep as login ID
+  name: String,
+  mobile: { type: String, match: /^[0-9]{10}$/ },
+  aadhaar: { type: String, match: /^[0-9]{12}$/ },
+  role: { type: String, enum: ["citizen", "admin"], default: "citizen" }
 });
 
-// Add plugin → adds username, hash, salt, and helper methods
 UserSchema.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model("User", UserSchema);

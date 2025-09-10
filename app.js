@@ -13,7 +13,7 @@ const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const MongoStore = require("connect-mongo");
-
+const authRoutes = require("./routes/auth");
 const User = require("./models/User"); // from NIF Portal
 const connectDB = require("./db"); // custom db.js (you’ll create as I shared)
 
@@ -88,6 +88,7 @@ app.get("/", (req, res) => {
 
 app.use("/reports", reportRoutes);
 app.use("/admin/reports", adminReportRoutes);
+app.use("/", authRoutes);
 
 // Error handling
 // Catch-all for undefined routes

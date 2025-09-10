@@ -59,3 +59,20 @@ module.exports.mapView = (req, res) => {
   res.render("reports/map"); // new map.ejs view
 };
 
+// Return JSON data for heatmap
+module.exports.getHeatmapData = async (req, res) => {
+  try {
+    const reports = await Report.find({}, "location priority"); // only fetch needed fields
+    const data = reports.map(r => {
+      const lat = r.location.coordinates[1];
+      const lng = r.location.coordinates[0];
+      const weight = r.priority === "high" ? 2 : 1; // verified reports heavier
+      return [lat, lng, weight];
+    });
+    res.json(data);
+  } catch (err) {
+    console.error("Heatmap error:", err);
+    res.status(500).json({ error: "Failed to load heatmap data" });
+  }
+};
+

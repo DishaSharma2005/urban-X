@@ -1,0 +1,55 @@
+<%- include("../partials/header") %>
+
+<div class="row justify-content-center">
+  <div class="col-md-5">
+    <h2 class="mb-4">Login</h2>
+
+    <form action="/login" method="POST" id="loginForm">
+      <div class="mb-3">
+        <label class="form-label">Username</label>
+        <input type="text" name="username" class="form-control" placeholder="Enter your username" required/>
+      </div>
+
+
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" name="password" class="form-control" placeholder="Enter your password" required />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Login as</label>
+        <select name="role" id="role" class="form-select" required>
+          <option value="citizen" selected>Citizen</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+
+      <!-- Hidden admin code input -->
+      <div class="mb-3" id="adminCodeField" style="display:none;">
+        <label class="form-label">Admin Code</label>
+        <input type="password" name="adminCode" class="form-control" placeholder="Enter Admin Code" />
+      </div>
+
+      <button type="submit" class="btn btn-success w-100">Login</button>
+    </form>
+
+    <p class="mt-3">Don’t have an account? <a href="/register">Sign Up</a></p>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const roleSelect = document.getElementById("role");
+    const adminField = document.getElementById("adminCodeField");
+
+    roleSelect.addEventListener("change", function () {
+      if (this.value === "admin") {
+        adminField.style.display = "block";
+      } else {
+        adminField.style.display = "none";
+      }
+    });
+  });
+</script>
+
+<%- include("../partials/footer") %>

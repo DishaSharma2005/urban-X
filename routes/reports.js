@@ -13,5 +13,6 @@ router.get("/new", reportsController.newReportForm);
 router.post("/", reportsController.createReport);
 
 router.get("/heatmap", reportsController.heatmapData); // JSON
+router.get("/heatmap", reportsController.getHeatmapData);
 router.get("/map", reportsController.mapView);    
 module.exports = router;
