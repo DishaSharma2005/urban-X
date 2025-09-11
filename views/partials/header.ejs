@@ -33,6 +33,8 @@
         <% } else { %>
           <% if (currentUser.role === "admin") { %>
             <li class="nav-item"><a class="nav-link" href="/admin/reports">Admin Dashboard</a></li>
+             <li class="nav-item"><a class="nav-link" href="/admin/reports/heatmap">Heatmap</a></li>
+
           <% } else { %>
             <li class="nav-item"><a class="nav-link" href="/reports">Reports</a></li>
             <li class="nav-item"><a class="nav-link" href="/reports/new">New Report</a></li>

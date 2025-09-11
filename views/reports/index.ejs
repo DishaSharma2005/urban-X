@@ -1,14 +1,54 @@
 <%- include("../partials/header") %>
-<h1>All Reports</h1>
 
-<ul>
-  <% reports.forEach(r => { %>
-    <li>
-      <strong><%= r.title %></strong> - <%= r.status %> <br>
-      (<%= r.location.coordinates[1] %>, <%= r.location.coordinates[0] %>)
-    </li>
-  <% }) %>
-</ul>
+<h2 class="mb-4">All Reports</h2>
 
-<a href="/reports/new" class="btn btn-success">New Report</a>
+<a href="/reports/new" class="btn btn-success mb-3">+ New Report</a>
+
+<% if (reports.length === 0) { %>
+  <p class="text-muted">No reports have been submitted yet.</p>
+<% } else { %>
+  <div class="table-responsive">
+    <table class="table table-striped table-hover align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>Title</th>
+          <th>Category</th>
+          <th>Type</th>
+          <th>Status</th>
+          <th>Location</th>
+          <th>Photo</th>
+          <th>Created At</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% reports.forEach(r => { %>
+          <tr>
+            <td><%= r.title %></td>
+            <td><%= r.category || "N/A" %></td>
+            <td><%= r.subCategory || "N/A" %></td>
+            <td>
+              <% if (r.status === "fixed") { %>
+                <span class="badge bg-success">Fixed</span>
+              <% } else if (r.status === "in-progress") { %>
+                <span class="badge bg-warning text-dark">In Progress</span>
+              <% } else { %>
+                <span class="badge bg-danger">Pending</span>
+              <% } %>
+            </td>
+            <td><%= r.placeName || `${r.location.coordinates[1]}, ${r.location.coordinates[0]}` %></td>
+            <td>
+              <% if (r.image) { %>
+                <img src="<%= r.image %>" alt="Report photo" style="width: 80px; height: auto; border-radius: 5px;">
+              <% } else { %>
+                <span class="text-muted">No Photo</span>
+              <% } %>
+            </td>
+            <td><%= r.createdAt ? r.createdAt.toLocaleString() : "N/A" %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+<% } %>
+
 <%- include("../partials/footer") %>

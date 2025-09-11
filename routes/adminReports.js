@@ -13,6 +13,9 @@ const adminReports = require("../controllers/adminReportsController");
 
 // Show all reports
 router.get("/", adminReports.listReports);
+router.get("/heatmap", (req, res) => {
+  res.render("reports/map");  // reuse map.ejs
+});
 
 // Update status
 router.post("/:id/status", adminReports.updateStatus);
