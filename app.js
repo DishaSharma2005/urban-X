@@ -17,6 +17,7 @@ const authRoutes = require("./routes/auth");
 const User = require("./models/User"); // from NIF Portal
 const connectDB = require("./db"); // custom db.js (you’ll create as I shared)
 
+
 // ROUTES
 const reportRoutes = require("./routes/reports.js"); // citizen side (new)
 const adminReportRoutes = require("./routes/adminReports"); // admin side (new)
@@ -37,6 +38,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
+app.use("/uploads", express.static("uploads"));
+
 
 // Session Store (reuse NIF Portal style)
 const secret = process.env.SESSION_SECRET || "thisshouldbeabettersecret";
@@ -107,4 +110,5 @@ app.use((err, req, res, next) => {
 const port = process.env.PORT || 4000;
 app.listen(port, () => {
   console.log(`UrbanX server running on port ${port}`);
+  
 });
