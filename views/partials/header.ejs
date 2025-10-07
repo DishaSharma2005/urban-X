@@ -1,56 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>UrbanX</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>UrbanX: Civic Reporting Platform</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
-  <!-- Bootstrap CSS (optional, makes UI neat) -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-  >
-    <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        /* Define color variables (for reference only, actual colors used inline) */
+        /* --color-authority: #003366; */
+        /* --color-action: #DC3545; */
+        
+        /* Apply font family globally if not done in style.css */
+        body {
+            font-family: 'Public Sans', sans-serif;
+        }
 
+        /* Base Navbar Styling */
+        .custom-navbar {
+            background-color: #003366; /* Authority Blue */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 0.6em 0;
+            margin-bottom: 0 !important; /* Remove Bootstrap default margin */
+            border-bottom: 1.5px solid #0056b3; /* Subtle light blue accent */
+        }
+        
+        /* Branding/Logo Styling */
+        .navbar-brand-custom {
+            font-size: 1.6em;
+            font-weight: 800;
+            color: white !important;
+            letter-spacing: 0.5px;
+        }
 
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="/css/style.css">
+        /* Nav Links Styling */
+        .nav-link-custom {
+            color: #ddd !important; /* Slightly off-white for contrast */
+            font-weight: 600;
+            font-size: 0.95em;
+            padding: 0.5em 1em;
+            margin-left: 5px;
+            border-radius: 4px;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        /* Hover Effect (Need to rely on Bootstrap's built-in `:hover` or stick to inline) */
+        /* Since full custom hover is not possible inline, we use primary colors for active look */
+        .nav-link-custom:hover {
+            color: white !important;
+            background-color: rgba(255, 255, 255, 0.15) !important;
+        }
+
+        /* Active Link or Special CTA Button Style */
+        .cta-link-btn {
+            background-color: #DC3545; /* Urgency Red */
+            color: white !important;
+            padding: 0.5em 1.2em;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+        .cta-link-btn:hover {
+            background-color: #b32a37; /* Darker Red on hover */
+            color: white !important;
+        }
+    </style>
 </head>
-<body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/">UrbanX</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<body style="background-color: #F8F9FA;">
 
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <% if (!currentUser) { %>
-          <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
-          <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
-        <% } else { %>
-          <% if (currentUser.role === "admin") { %>
-            <li class="nav-item"><a class="nav-link" href="/admin/reports">Admin Dashboard</a></li>
-             <li class="nav-item"><a class="nav-link" href="/admin/reports/heatmap">Heatmap</a></li>
+<nav class="navbar navbar-expand-lg custom-navbar">
+    <div class="container-fluid" style="max-width: 1500px;">
+        <a class="navbar-brand navbar-brand-custom" href="/">
+            <i class="fas fa-city" style="margin-right: 8px; color: #DC3545;"></i>UrbanX
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border-color: rgba(255, 255, 255, 0.1);">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-          <% } else { %>
-            <li class="nav-item"><a class="nav-link" href="/reports">Reports</a></li>
-            <li class="nav-item"><a class="nav-link" href="/reports/new">New Report</a></li>
-          <% } %>
-          <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
-        <% } %>
-      </ul>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link nav-link-custom" href="/home"><i class="fas fa-home" style="margin-right: 5px;"></i> Home</a>
+                </li>
+
+                <% if (!currentUser) { %>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom cta-link-btn" href="/register">Register</a>
+                    </li>
+                <% } else { %>
+                    <% if (currentUser.role === "admin") { %>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-custom cta-link-btn" href="/admin/reports"><i class="fas fa-users-cog" style="margin-right: 5px;"></i> Admin Console</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-custom" href="/admin/reports/heatmap">Heatmap</a>
+                        </li>
+                    <% } else { %>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-custom" href="/reports">My Reports</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-custom cta-link-btn" href="/reports/new"><i class="fas fa-plus" style="margin-right: 5px;"></i> New Report</a>
+                        </li>
+                    <% } %>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="/logout"><i class="fas fa-sign-out-alt" style="margin-right: 5px;"></i> Logout</a>
+                    </li>
+                <% } %>
+            </ul>
+        </div>
     </div>
-  </div>
 </nav>
 
-
-  <div class="container">
+<div class="container" style="max-width: 1200px; margin-top: 1.5em;">
     <% if (success && success.length > 0) { %>
-      <div class="alert alert-success"><%= success %></div>
+      <div class="alert alert-success" role="alert"><%= success %></div>
     <% } %>
     <% if (error && error.length > 0) { %>
-      <div class="alert alert-danger"><%= error %></div>
+      <div class="alert alert-danger" role="alert"><%= error %></div>
     <% } %>
+    
+</div>

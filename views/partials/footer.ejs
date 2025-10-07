@@ -1,22 +1,92 @@
-  </div> <!-- container -->
+</div> <footer style="
+    background-color: #003366; /* Authority Blue */
+    color: white;
+    padding: 3em 2em;
+    margin-top: 3em; /* Space separation from the main content */
+    border-top: 4px solid #DC3545; /* Urgency Red accent line */
+    font-family: 'Public Sans', sans-serif;
+    font-size: 0.9em;
+">
+    <div style="
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 25px;
+    ">
+        
+        <div style="flex: 1 1 250px; min-width: 200px;">
+            <h4 style="
+                color: white;
+                font-weight: 800;
+                font-size: 1.4em;
+                margin-bottom: 0.8em;
+            ">CityConnect</h4>
+            <p style="color: #ccc; line-height: 1.6;">
+                Empowering citizens through transparent and efficient civic issue resolution. Together, we build smarter cities.
+            </p>
+            <div style="margin-top: 1.5em;">
+                <a href="#" style="color: white; margin-right: 15px; font-size: 1.2em; text-decoration: none;"><i class="fab fa-twitter"></i></a>
+                <a href="#" style="color: white; margin-right: 15px; font-size: 1.2em; text-decoration: none;"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" style="color: white; margin-right: 15px; font-size: 1.2em; text-decoration: none;"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    if (document.getElementById('map')) {
-      const s = document.createElement('script');
-      s.src = '/js/reportMap.js';
-      s.defer = true;
-      document.body.appendChild(s);
-    }
-    if (document.getElementById('heatmap')) {
-      const s = document.createElement('script');
-      s.src = '/js/heatmap.js';
-      s.defer = true;
-      document.body.appendChild(s);
-    }
-  });
+        <div style="flex: 1 1 150px; min-width: 120px;">
+            <h5 style="color: white; font-weight: 600; margin-bottom: 1em; font-size: 1.1em;">Quick Links</h5>
+            <ul style="list-style: none; padding: 0;">
+                <li style="margin-bottom: 0.8em;"><a href="/" style="color: #ccc; text-decoration: none; transition: color 0.2s;">Home</a></li>
+                <li style="margin-bottom: 0.8em;"><a href="/reports/new" style="color: #ccc; text-decoration: none; transition: color 0.2s;">Report Issue</a></li>
+                <li style="margin-bottom: 0.8em;"><a href="/dashboard" style="color: #ccc; text-decoration: none; transition: color 0.2s;">Public Dashboard</a></li>
+                <li style="margin-bottom: 0.8em;"><a href="/faq" style="color: #ccc; text-decoration: none; transition: color 0.2s;">FAQ & Help</a></li>
+            </ul>
+        </div>
+
+        <div style="flex: 1 1 150px; min-width: 120px;">
+            <h5 style="color: white; font-weight: 600; margin-bottom: 1em; font-size: 1.1em;">Support</h5>
+            <ul style="list-style: none; padding: 0;">
+                <li style="margin-bottom: 0.8em;"><a href="/contact" style="color: #ccc; text-decoration: none; transition: color 0.2s;">Contact Us</a></li>
+                <li style="margin-bottom: 0.8em;"><a href="/privacy" style="color: #ccc; text-decoration: none; transition: color 0.2s;">Privacy Policy</a></li>
+                <li style="margin-bottom: 0.8em;"><a href="/terms" style="color: #ccc; text-decoration: none; transition: color 0.2s;">Terms of Service</a></li>
+                <li style="margin-bottom: 0.8em;"><a href="/accessibility" style="color: #ccc; text-decoration: none; transition: color 0.2s;">Accessibility</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div style="
+        max-width: 1200px;
+        margin: 2em auto 0;
+        padding-top: 1.5em;
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+        text-align: center;
+        font-size: 0.85em;
+    ">
+        &copy; <%= new Date().getFullYear() %> CityConnect Portal | Operated by the Municipal Government.
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Function to dynamically load a script
+        function loadScript(src) {
+            const s = document.createElement('script');
+            s.src = src;
+            s.defer = true;
+            document.body.appendChild(s);
+        }
+
+        // Check for map elements and load scripts only when needed
+        if (document.getElementById('map')) {
+            loadScript('/js/reportMap.js');
+        }
+        if (document.getElementById('heatmap')) {
+            loadScript('/js/heatmap.js');
+        }
+    });
 </script>
 
 </body>
