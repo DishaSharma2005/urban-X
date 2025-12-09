@@ -1,0 +1,289 @@
+/* =============================
+   GLOBAL
+============================= */
+.container {
+    max-width: 1600px;
+    margin: 2.5em auto;
+    padding: 0 1.2em;
+}
+
+/* =============================
+   HERO SECTION
+============================= */
+.hero {
+    position: relative;
+    text-align: center;
+    padding: 4em 2em;
+    color: white;
+    background: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.85)),
+                url("https://source.unsplash.com/1600x900/?city,skyline") 
+                no-repeat center center/cover;
+    border-radius: 8px;
+    margin-bottom: 3em;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.hero h2 {
+    font-size: 2em;
+    font-weight: 800;
+    margin-bottom: 0.3em;
+    line-height: 1.2;
+}
+
+.hero p {
+    font-size: 1.15em;
+    max-width: 800px;
+    margin: 0.5em auto 2em;
+    font-weight: 400;
+}
+
+.hero a {
+    display: inline-block;
+    padding: 1em 3em;
+    background-color: #DC3545;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 1.2em;
+    font-weight: 600;
+    text-transform: uppercase;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* =============================
+   IMPACT SECTION
+============================= */
+.impact-section {
+    background-color: #F8F9FA;
+    padding: 2.5em;
+    margin-bottom: 3em;
+    border-radius: 6px;
+}
+
+.impact-section h2 {
+    text-align: center;
+    font-size: 2em;
+    color: #003366;
+    font-weight: 600;
+    margin-bottom: 1em;
+}
+
+.impact-box {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    margin-top: 2em;
+    border: 1px solid #DEE2E6;
+    border-radius: 6px;
+    background-color: white;
+}
+
+.impact-item {
+    flex: 1;
+    text-align: center;
+    padding: 1.5em 0;
+    border-right: 1px solid #DEE2E6;
+}
+
+.impact-item:last-child {
+    border-right: none;
+}
+
+.impact-item h2 {
+    font-size: 2.5em;
+    font-weight: 800;
+    margin: 0;
+}
+
+.impact-item p {
+    font-size: 0.9em;
+    color: #6C757D;
+    text-transform: uppercase;
+    margin-top: 5px;
+}
+
+/* Colors */
+.green   { color: #28A745; }
+.blue    { color: #003366; }
+.yellow  { color: #FFC107; }
+.lightblue { color: #007bff; }
+
+/* =============================
+   CATEGORY SECTION
+============================= */
+.category-section {
+    background-color: white;
+    padding: 2.5em;
+    border-radius: 6px;
+    border: 1px solid #DEE2E6;
+    margin-bottom: 2.5em;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.category-section h2 {
+    font-size: 2em;
+    color: #003366;
+    border-bottom: 2px solid #DEE2E6;
+    padding-bottom: 0.4em;
+    margin-bottom: 1.2em;
+    font-weight: 600;
+}
+
+.category-section p {
+    color: #6C757D;
+    margin-bottom: 1.5em;
+    font-size: 0.95em;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.category-card {
+    background-color: #EBF5FF;
+    border: 1px solid #D4E9FF;
+    border-radius: 4px;
+    padding: 1.5em;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+    border-left: 4px solid #007bff;
+}
+
+.category-card i {
+    font-size: 1.8em;
+    color: #007bff;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.category-card h3 {
+    font-size: 1.1em;
+    color: #003366;
+    margin: 0.4em 0;
+    font-weight: 600;
+}
+
+.category-card p {
+    font-size: 0.85em;
+    margin: 0;
+    color: #6C757D;
+}
+
+/* =============================
+   STATUS SECTION
+============================= */
+.status-section {
+    background-color: #F8F9FA;
+    padding: 2.5em;
+    border-radius: 6px;
+    margin-bottom: 2.5em;
+}
+
+.status-section h2 {
+    font-size: 2em;
+    color: #003366;
+    border-bottom: 2px solid #DEE2E6;
+    padding-bottom: 0.4em;
+    margin-bottom: 1.2em;
+}
+
+.status-form {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    max-width: 600px;
+}
+
+.status-form input {
+    flex-grow: 1;
+    padding: 0.9em 1em;
+    border: 1px solid #DEE2E6;
+    border-radius: 4px;
+    font-size: 0.95em;
+}
+
+.status-form button {
+    padding: 0.9em 1.5em;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.95em;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* =============================
+   RESPONSIVE CSS
+============================= */
+
+/* Mobile & Tablet */
+@media (max-width: 768px) {
+
+    .container {
+        padding: 0 1em;
+    }
+
+    .hero h2 {
+        font-size: 1.4em;
+    }
+    .hero p {
+        font-size: 1em;
+    }
+
+    .hero {
+        padding: 3em 1.2em;
+    }
+
+    /* Impact stacked */
+    .impact-box {
+        flex-direction: column;
+    }
+    .impact-item {
+        border-right: none;
+        border-bottom: 1px solid #DEE2E6;
+    }
+    .impact-item:last-child {
+        border-bottom: none;
+    }
+
+    /* Categories 1 column */
+    .category-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Status form stacked */
+    .status-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .status-form input,
+    .status-form button {
+        width: 100%;
+    }
+}
+
+/* Extra Small Screens - 348px */
+@media (max-width: 380px) {
+
+    .hero h2 {
+        font-size: 1.2em;
+    }
+    .hero a {
+        padding: 0.8em 1.5em;
+        font-size: 0.9em;
+        display: block;
+        width: fit-content;
+        margin: auto;
+    }
+
+    .impact-item h2 {
+        font-size: 1.8em;
+    }
+
+    .impact-item p {
+        font-size: 0.8em;
+    }
+}
