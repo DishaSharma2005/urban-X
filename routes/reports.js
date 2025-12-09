@@ -10,7 +10,7 @@ router.get("/", reportsController.listReports);
 
 // Show form
 router.get("/new", reportsController.newReportForm);
-
+router.get("/my",  reportsController.listMyReports);
 
 // Configure Multer
 const storage = multer.diskStorage({

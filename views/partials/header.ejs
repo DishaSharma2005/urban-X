@@ -74,7 +74,7 @@
 <body style="background-color: #F8F9FA;">
 
 <nav class="navbar navbar-expand-lg custom-navbar">
-    <div class="container-fluid" style="max-width: 1500px;">
+    <div class="container-fluid px-8 " style="max-width: 1500px;">
         <a class="navbar-brand navbar-brand-custom" href="/">
             <i class="fas fa-city" style="margin-right: 8px; color: #DC3545;"></i>UrbanX
         </a>
@@ -85,8 +85,15 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link nav-link-custom" href="/home"><i class="fas fa-home" style="margin-right: 5px;"></i> Home</a>
-                </li>
+                <% if (!currentUser) { %>
+                    <a class="nav-link nav-link-custom" href="/"><i class="fas fa-home" style="margin-right: 5px;"></i> Home</a>
+                <% } else if (currentUser.role === "admin") { %>
+                    <a class="nav-link nav-link-custom" href="/admin/reports"><i class="fas fa-home" style="margin-right: 5px;"></i> Home</a>
+                <% } else { %>
+                    <a class="nav-link nav-link-custom" href="/"><i class="fas fa-home" style="margin-right: 5px;"></i> Home</a>
+                <% } %>
+            </li>
+
 
                 <% if (!currentUser) { %>
                     <li class="nav-item">
@@ -105,7 +112,7 @@
                         </li>
                     <% } else { %>
                         <li class="nav-item">
-                            <a class="nav-link nav-link-custom" href="/reports">My Reports</a>
+                            <a class="nav-link nav-link-custom" href="/reports/my">My Reports</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link nav-link-custom cta-link-btn" href="/reports/new"><i class="fas fa-plus" style="margin-right: 5px;"></i> New Report</a>
@@ -119,6 +126,7 @@
         </div>
     </div>
 </nav>
+<div class="main-content px-2 px-md-4 px-lg-5" style="padding-top: 1.5em;">
 
 <div class="container" style="max-width: 1200px; margin-top: 1.5em;">
     <% if (success && success.length > 0) { %>

@@ -72,6 +72,17 @@ module.exports.listReports = async (req, res) => {
   const reports = await Report.find({});
   res.render("reports/index", { reports });
 };
+module.exports.listMyReports = async (req, res) => {
+  try {
+    const reports = await Report.find({ createdBy: req.user._id });
+
+    res.render("reports/myReports", { reports });
+  } catch (err) {
+    console.error("Error fetching user reports:", err);
+    req.flash("error", "Could not load your reports");
+    res.redirect("/reports");
+  }
+};
 
 module.exports.newReportForm = (req, res) => {
   res.render("reports/new");
@@ -111,5 +122,6 @@ module.exports.getHeatmapData = async (req, res) => {
     res.status(500).json({ error: "Failed to load heatmap data" });
   }
 };
+
 
 
